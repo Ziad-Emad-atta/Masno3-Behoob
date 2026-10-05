@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مصنوع بحب | Handmade with Love</title>
+<style>
+:root{
+  --bg:#f8f2e9;--card:#fffaf3;--brown:#65452f;--dark:#2e2925;
+  --rose:#b7654f;--olive:#747952;--line:#e7dbcc;--muted:#81756a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--dark);font-family:Tahoma,Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:#f8f2e9e8;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:78px;display:flex;align-items:center;gap:28px}
+.logo{font-weight:900;font-size:25px;color:var(--brown);white-space:nowrap}
+.logo small{display:block;font-size:9px;letter-spacing:1.5px;font-weight:400;text-align:center;color:var(--rose)}
+nav{display:flex;gap:24px;flex:1}
+nav a{font-size:14px}
+nav a:hover{color:var(--rose)}
+.actions{display:flex;gap:8px;align-items:center}
+.action{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:9px 12px;cursor:pointer}
+.badge{background:var(--rose);color:#fff;border-radius:20px;padding:2px 6px;font-size:10px}
+.hero{padding:65px 0 50px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.kicker{color:var(--rose);font-weight:bold;font-size:13px}
+h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin:14px 0}
+h1 span{color:var(--rose)}
+.hero p{font-size:18px;line-height:1.9;color:var(--muted);max-width:600px}
+.buttons{display:flex;gap:12px;margin:25px 0}
+.btn{padding:13px 22px;border-radius:13px;font-weight:bold;display:inline-block;border:1px solid var(--brown)}
+.primary{background:var(--brown);color:white}
+.secondary{color:var(--brown);background:transparent}
+.hero-photo{position:relative;background:#eadfce;padding:15px;border-radius:30px;transform:rotate(1.5deg)}
+.hero-photo img{width:100%;height:500px;object-fit:cover;border-radius:22px;display:block}
+.stamp{position:absolute;left:-22px;bottom:25px;background:var(--card);border:1px solid var(--line);padding:14px 20px;border-radius:15px;box-shadow:0 12px 30px #49342418;font-weight:bold}
+.stamp span{display:block;color:var(--rose);font-size:12px;font-weight:normal}
+.section{padding:65px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}
+.eyebrow{font-size:12px;color:var(--rose);font-weight:bold}
+h2{font-size:38px;margin:5px 0}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;text-align:center;cursor:pointer;transition:.2s}
+.cat:hover{transform:translateY(-4px);border-color:#c7b49f}
+.cat .icon{font-size:35px;margin-bottom:8px}
+.cat h3{margin:5px 0}
+.cat p{color:var(--muted);font-size:13px;margin:0}
+.filters{display:flex;gap:9px;flex-wrap:wrap}
+.filter{border:1px solid var(--line);background:var(--card);padding:9px 15px;border-radius:999px;cursor:pointer}
+.filter.active,.filter:hover{background:var(--brown);color:#fff}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.product{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.product-img{position:relative}
+.product img{width:100%;height:240px;object-fit:cover;display:block}
+.favorite{position:absolute;top:10px;left:10px;width:36px;height:36px;border:0;border-radius:50%;background:#fffdf9d9;cursor:pointer;font-size:18px}
+.product-body{padding:16px}
+.tag{color:var(--rose);font-size:11px}
+.product h3{margin:5px 0;font-size:17px}
+.price{font-weight:bold;color:var(--brown);font-size:18px;margin:10px 0}
+.add{width:100%;border:0;background:var(--rose);color:white;border-radius:11px;padding:11px;cursor:pointer;font-weight:bold}
+.about{background:#eee3d4}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.about p{color:#685e55;line-height:2}
+.quote{background:var(--card);border-radius:25px;padding:42px;text-align:center;font-size:28px;color:var(--brown)}
+.quote small{display:block;color:var(--rose);font-size:12px;margin-top:14px}
+footer{background:#3e3026;color:#f1e7da;padding:38px 0}
+.footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.drawer{position:fixed;inset:0;background:#20150d66;z-index:50;display:none}
+.drawer.open{display:block}
+.cart-panel{position:absolute;right:0;top:0;width:min(430px,94%);height:100%;background:var(--card);padding:25px;overflow:auto}
+.close{border:0;background:none;font-size:30px;cursor:pointer;float:left}
+.cart-row{display:flex;gap:10px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.cart-row img{width:62px;height:62px;object-fit:cover;border-radius:10px}
+.cart-row div:nth-child(2){flex:1}
+.qty button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:2px 8px;cursor:pointer}
+.total{display:flex;justify-content:space-between;padding:20px 0;font-size:18px}
+.full{width:100%;border:0;cursor:pointer}
+.search{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 13px;width:240px;outline:none}
+@media(max-width:900px){
+ .hero-grid,.about-grid{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,1fr)}
+ nav{display:none}.hero-photo img{height:390px}.categories{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+ .products{grid-template-columns:1fr}.categories{grid-template-columns:1fr}
+ .hero{padding-top:35px}.hero-photo img{height:330px}
+ .section-head{align-items:flex-start;flex-direction:column}.search{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container nav">
+  <a class="logo" href="#home">مصنوع بحب<small>HANDMADE WITH LOVE</small></a>
+  <nav>
+    <a href="#home">الرئيسية</a>
+    <a href="#categories">الأقسام</a>
+    <a href="#products">المنتجات</a>
+    <a href="#about">عننا</a>
+  </nav>
+  <div class="actions">
+    <button class="action" id="searchBtn">🔎</button>
+    <button class="action" id="cartBtn">🛒 <span class="badge" id="cartCount">0</span></button>
+  </div>
+</div>
+</header>
+
+<main id="home">
+<section class="hero">
+<div class="container hero-grid">
+  <div>
+    <div class="kicker">HANDMADE WITH LOVE ✦</div>
+    <h1>حاجات معمولة<br><span>بإيدينا وبحب.</span></h1>
+    <p>مكرمية، شغل بالخيط، ديكور، وإكسسوارات هاند ميد. كل قطعة بنعملها بهدوء واهتمام علشان توصلك مختلفة ومميزة.</p>
+    <div class="buttons">
+      <a class="btn primary" href="#products">شوف المنتجات</a>
+      <a class="btn secondary" href="#categories">الأقسام</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="product.jpg" alt="مكرمية هاند ميد">
+    <div class="stamp">مصنوع بحب ❤️<span>قطعة هاند ميد</span></div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="categories">
+<div class="container">
+  <div class="section-head"><div><div class="eyebrow">اختار اللي يعجبك</div><h2>أقسامنا</h2></div></div>
+  <div class="categories">
+    <div class="cat" data-cat="مكرمية"><div class="icon">🪢</div><h3>مكرمية</h3><p>تعليقات حائط، مفارش وقطع بخيط المكرمية</p></div>
+    <div class="cat" data-cat="شغل بالخيط"><div class="icon">🧶</div><h3>شغل بالخيط</h3><p>أفكار وقطع متنوعة معمولة بالخيط</p></div>
+    <div class="cat" data-cat="ديكور"><div class="icon">🌿</div><h3>ديكور</h3><p>لمسات بسيطة للبيت بطابع هاند ميد</p></div>
+    <div class="cat" data-cat="إكسسوارات"><div class="icon">♡</div><h3>إكسسوارات</h3><p>إكسسوارات هاند ميد بخامات وتصميمات مختلفة</p></div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="products">
+<div class="container">
+  <div class="section-head">
+    <div><div class="eyebrow">مصنوع بإيدينا</div><h2>منتجاتنا</h2></div>
+    <input class="search" id="search" placeholder="ابحث عن منتج...">
+  </div>
+  <div class="filters">
+    <button class="filter active" data-filter="الكل">الكل</button>
+    <button class="filter" data-filter="مكرمية">مكرمية</button>
+    <button class="filter" data-filter="شغل بالخيط">شغل بالخيط</button>
+    <button class="filter" data-filter="ديكور">ديكور</button>
+    <button class="filter" data-filter="إكسسوارات">إكسسوارات</button>
+  </div>
+  <br>
+  <div class="products" id="productsGrid"></div>
+</div>
+</section>
+
+<section class="section about" id="about">
+<div class="container about-grid">
+  <div><div class="eyebrow">حكايتنا</div><h2>مش مجرد منتج.</h2>
+  <p>«مصنوع بحب» مكان للحاجات اللي بتاخد وقتها وهي بتتعمل. بنركز على المكرمية وكل ما يتعلق بشغل الخيط، ومعاها ديكور وإكسسوارات هاند ميد.</p>
+  <p>كل عقدة، كل خيط، وكل تفصيلة بتتعمل بإيدينا علشان تحس إن القطعة ليها روح.</p></div>
+  <div class="quote">“الحاجة اللي بتتعمل بحب… بتبان.”<small>— مصنوع بحب</small></div>
+</div>
+</section>
+</main>
+
+<footer><div class="container footer">
+  <div><strong>مصنوع بحب</strong><div>Handmade with Love</div></div>
+  <div>مكرمية · شغل بالخيط · ديكور · إكسسوارات</div>
+  <div>© 2026 مصنوع بحب</div>
+</div></footer>
+
+<div class="drawer" id="drawer">
+<div class="cart-panel">
+<button class="close" id="closeCart">×</button>
+<h2>سلة المشتريات</h2>
+<div id="cartItems"></div>
+<div class="total"><span>الإجمالي</span><strong id="total">0 ج.م</strong></div>
+<button class="btn primary full" id="whatsapp">اطلب على واتساب</button>
+</div>
+</div>
+
+<script>
+const IMG="product.jpg";
+const products=[
+ {id:1,name:"تعليقة مكرمية Leaf",cat:"مكرمية",price:280},
+ {id:2,name:"تعليقة حائط مكرمية",cat:"مكرمية",price:320},
+ {id:3,name:"ميدالية بخيط المكرمية",cat:"شغل بالخيط",price:120},
+ {id:4,name:"قطعة ديكور بخيط المكرمية",cat:"ديكور",price:250},
+ {id:5,name:"إكسسوار هاند ميد",cat:"إكسسوارات",price:150},
+ {id:6,name:"سوار بخيط",cat:"إكسسوارات",price:110},
+ {id:7,name:"مفرش مكرمية",cat:"مكرمية",price:360},
+ {id:8,name:"ديكور حائط بخيوط",cat:"ديكور",price:300}
+];
+let cart=JSON.parse(localStorage.getItem("mb_customer_cart")||"[]");
+let filter="الكل", query="";
+const money=n=>n.toLocaleString("ar-EG")+" ج.م";
+
+function renderProducts(){
+ const grid=document.getElementById("productsGrid");
+ const list=products.filter(p=>(filter==="الكل"||p.cat===filter)&&p.name.includes(query));
+ grid.innerHTML=list.map(p=>`
+ <article class="product">
+   <div class="product-img"><img src="${IMG}" alt="${p.name}">
+   <button class="favorite" onclick="this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button></div>
+   <div class="product-body"><div class="tag">${p.cat}</div><h3>${p.name}</h3>
+   <div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${p.id})">أضف للسلة</button></div>
+ </article>`).join("");
+}
+function save(){localStorage.setItem("mb_customer_cart",JSON.stringify(cart))}
+function addToCart(id){let x=cart.find(i=>i.id===id);x?x.qty++:cart.push({id,qty:1});save();renderCart();document.getElementById("drawer").classList.add("open")}
+function change(id,d){let x=cart.find(i=>i.id===id);if(!x)return;x.qty+=d;if(x.qty<=0)cart=cart.filter(i=>i.id!==id);save();renderCart()}
+function renderCart(){
+ document.getElementById("cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0);
+ const box=document.getElementById("cartItems");
+ box.innerHTML=cart.length?cart.map(x=>{let p=products.find(y=>y.id===x.id);return `<div class="cart-row"><img src="${IMG}"><div><b>${p.name}</b><br><small>${money(p.price)}</small><div class="qty"><button onclick="change(${x.id},-1)">−</button> ${x.qty} <button onclick="change(${x.id},1)">+</button></div></div></div>`}).join(""):"<p>السلة فاضية.</p>";
+ document.getElementById("total").textContent=money(cart.reduce((a,x)=>a+products.find(p=>p.id===x.id).price*x.qty,0));
+}
+document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;renderProducts()});
+document.querySelectorAll(".cat").forEach(c=>c.onclick=()=>{filter=c.dataset.cat;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.dataset.filter===filter));document.getElementById("products").scrollIntoView({behavior:"smooth"});renderProducts()});
+document.getElementById("search").oninput=e=>{query=e.target.value.trim();renderProducts()};
+document.getElementById("cartBtn").onclick=()=>document.getElementById("drawer").classList.add("open");
+document.getElementById("closeCart").onclick=()=>document.getElementById("drawer").classList.remove("open");
+document.getElementById("searchBtn").onclick=()=>{document.getElementById("search").focus();document.getElementById("products").scrollIntoView({behavior:"smooth"})};
+document.getElementById("whatsapp").onclick=()=>{
+ if(!cart.length)return alert("السلة فاضية");
+ let lines=cart.map(x=>{let p=products.find(y=>y.id===x.id);return `${p.name} × ${x.qty}`}).join("\n");
+ let total=cart.reduce((a,x)=>a+products.find(p=>p.id===x.id).price*x.qty,0);
+ let msg=encodeURIComponent(`مرحباً مصنوع بحب ❤️\nعايز أطلب:\n${lines}\nالإجمالي: ${money(total)}\n`);
+ window.open("https://wa.me/201103979739?text="+msg,"_blank");
+};
+renderProducts();renderCart();
+</script>
+</body>
+</html>
